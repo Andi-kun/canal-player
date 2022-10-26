@@ -1,24 +1,16 @@
 import React from 'react'
-import logo from './logo.svg'
 import './App.css'
+import VideoPlayer from './components/VideoPlayer/VideoPlayer'
+import Video from './types/Video'
 
+const currentVideo: Video = {
+  url: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+  poster: 'https://peach.blender.org/wp-content/uploads/title_anouncement.jpg',
+}
 function App() {
   return (
     <div className='App'>
-      <header className='App-header'>
-        <img src={logo} className='App-logo' alt='logo' />
-        <p className='underline'>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className='App-link'
-          href='https://reactjs.org'
-          target='_blank'
-          rel='noopener noreferrer'
-        >
-          Learn React
-        </a>
-      </header>
+      <VideoPlayer video={currentVideo} />
     </div>
   )
 }
