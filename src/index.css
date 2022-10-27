@@ -4,6 +4,7 @@
 
 :root {
   --theme-color: hsl(220, 12%, 10%);
+  --gray-color: rgba(255, 255, 255, 0.2);
 }
 
 body {
@@ -13,6 +14,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   box-sizing: border-box;
+  background-color: var(--theme-color);
 }
 
 code {

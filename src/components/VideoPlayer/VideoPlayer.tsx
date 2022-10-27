@@ -1,43 +1,30 @@
-import React, { useRef, useEffect } from 'react'
-import RxPlayer from 'rx-player'
+import useRxPlayer from '../../hooks/useRxPlayer'
+import Scene from '../../types/Scene'
 import Video from '../../types/Video'
-
-const initPlayer = async (videoElement: HTMLMediaElement, videoUrl: string) => {
-  const player = new RxPlayer({ videoElement: videoElement })
-
-  player.loadVideo({
-    url: videoUrl,
-    transport: 'directfile',
-    autoPlay: true,
-  })
-
-  player.addEventListener('playerStateChange', (state) => {
-    if (state === 'LOADED') {
-      console.log('the content is loaded')
-      videoElement.onclick = function () {
-        if (player.getPlayerState() === 'PLAYING') {
-          player.pause()
-        } else {
-          player.play()
-        }
-      }
-    }
-  })
-}
+import VideoControls from '../VideoControls/VideoControls'
 
 interface VideoPlayerProp {
   video: Video
+  currentScene?: Scene
+  onPositionUpdate: (timeCode: number) => void
 }
 
-const VideoPlayer = ({ video }: VideoPlayerProp) => {
-  const videoElement = useRef(null)
+const VideoPlayer = ({ video, currentScene, onPositionUpdate }: VideoPlayerProp) => {
+  const { videoElement, isPlaying, progress, togglePlay, handleVideoProgress } = useRxPlayer(
+    video.url,
+    onPositionUpdate,
+    currentScene,
+  )
 
-  useEffect(() => {
-    if (videoElement.current) initPlayer(videoElement.current, video.url)
-  }, [video])
   return (
-    <div className='mx-5'>
-      <video width={865} ref={videoElement} controls poster={video.poster}></video>
+    <div>
+      <video width={1000} ref={videoElement} poster={video.poster}></video>
+      <VideoControls
+        isPlaying={isPlaying}
+        onTogglePlay={togglePlay}
+        progress={progress}
+        onVideoProgressChange={handleVideoProgress}
+      />
     </div>
   )
 }
