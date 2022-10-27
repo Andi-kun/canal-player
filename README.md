@@ -1,6 +1,23 @@
-# Getting Started with Create React App
+# Canal Player
+
+A minimalist player using RxPlayer and playing "Bick Buck Bunny" video.
+
+Video url : https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4
+
+RxPlayer documentation: https://developers.canal-plus.com/rx-player/doc/api/Overview.html
+
+Video API: https://oneplayer-tech-test.herokuapp.com/
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Packages
+
+- **RxPlayer** : for the video player
+- **Axios** : to make API Calls
+- **ESLint**: to lint and find problems and syntax issues
+- **Prettier**: to format code
+- **FontAwesome** : for icons
+- **Tailwind** : to style quickly
 
 ## Available Scripts
 
