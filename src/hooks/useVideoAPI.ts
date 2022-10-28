@@ -11,9 +11,13 @@ const useVideoAPI = () => {
   const currentSceneRef = useRef<Scene | undefined>(currentSceneData)
   const pendingCall = useRef<boolean>(false)
 
-  const setCurrentSceneDataAndRef = (scene: Scene) => {
-    currentSceneRef.current = scene
-    setCurrentSceneData(scene)
+  const setCurrentSceneDataAndRef = (scene: Scene, manual = false) => {
+    const sceneData = {
+      ...scene,
+      manualChange: manual,
+    }
+    currentSceneRef.current = sceneData
+    setCurrentSceneData(sceneData)
   }
 
   const getScene = async (timeCode: number) => {
@@ -68,7 +72,7 @@ const useVideoAPI = () => {
     sceneListData,
     crewData,
     getSceneByTimecode,
-    setCurrentSceneData,
+    setCurrentSceneData: setCurrentSceneDataAndRef,
   }
 }
 

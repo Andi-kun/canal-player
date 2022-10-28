@@ -9,4 +9,5 @@ export default interface Scene {
   reactions?: Reaction[]
   beginTimecode: number
   endTimecode: number
+  manualChange?: boolean
 }

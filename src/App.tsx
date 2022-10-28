@@ -15,7 +15,7 @@ function App() {
   const { currentSceneData, setCurrentSceneData, crewData, getSceneByTimecode, sceneListData } =
     useVideoAPI()
   const handleSceneChange = (scene: Scene) => {
-    setCurrentSceneData(scene)
+    setCurrentSceneData(scene, true)
   }
   return (
     <div className='App p-5 flex'>

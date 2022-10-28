@@ -24,7 +24,8 @@ const useRxPlayer = (
     player.current &&
     player.current.getPlayerState() !== PlayerStateEnum.STOPPED &&
     player.current.getPlayerState() !== PlayerStateEnum.LOADING &&
-    player.current.getPlayerState() !== PlayerStateEnum.RELOADING
+    player.current.getPlayerState() !== PlayerStateEnum.RELOADING &&
+    player.current.getPlayerState() !== PlayerStateEnum.SEEKING
 
   const initPlayer = async () => {
     if (!videoElement.current) return
@@ -44,10 +45,11 @@ const useRxPlayer = (
 
   useEffect(() => {
     const currentTimeCode = player.current?.getPosition() || 0
-    const isNotBetweenCurrentScene =
+    const isManualAndNotBetweenCurrentScene =
       currentScene &&
+      currentScene.manualChange &&
       (currentScene.beginTimecode > currentTimeCode || currentScene.endTimecode < currentTimeCode)
-    if (canSeek() && isNotBetweenCurrentScene) {
+    if (canSeek() && isManualAndNotBetweenCurrentScene) {
       player.current?.seekTo(currentScene.beginTimecode)
     }
   }, [currentScene])
